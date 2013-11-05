@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <ui:composition template="utils/templateLogged.xhtml">
+      <ui:define name="contentLogged">
+          <div class="content-pad">
+          <div class="msgBox">
+              <h:messages styleClass="msgBox" infoClass="success" errorClass="errors"/>
+          </div>
+          
+          <h:form id="main_page_form">
+          
+          <h1><h:outputText value="#{homeMsg.welcome_title}" /></h1>
+          
+          <p><h:outputText value="#{homeMsg.welcome_message}" /></p>
+          
+          
+          <h2><h:outputText value="#{homeMsg.new_diagram_title}" /></h2>
+          
+          <p><h:outputText value="#{homeMsg.new_diagram_message}" /></p>
+          <div class="new_diagram_center">
+                <h:inputText id="newName" value="#{diagramaController.newName}" />
+                <h:commandButton id="new_text" action="#{diagramaController.createDiagram}" value="#{homeMsg.createDiagram}"/>
+          </div>
+         
+          
+          <h2><h:outputText value="#{homeMsg.diagram_list_title}" /></h2>
+          
+          <p><h:outputText value="#{homeMsg.diagram_list_message}" /></p>
+          
+          
+          <h:dataTable value="#{diagramaController.getDiagrams()}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" class="diagramTable">
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="#{homeMsg.table_header_diagram_name}"/>
+                </f:facet>
+                <h:outputText value="#{item.name}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="#{homeMsg.table_header_classes}"/>
+                </f:facet>
+                #{Hibernate.initialize(item.getClasses())}
+                <h:outputText value="#{item.classes.size()}" />
+            </h:column>
+              <h:column>
+                  <f:facet name="header">
+                        <h:outputText value="#{homeMsg.table_header_actions}"/>
+                    </f:facet>
+                      <h:commandLink id="openT-#{item.id}" action="#{diagramaController.openTextual(item.id)}" value="#{homeMsg.openTextual}" immediate="true"/><span> </span>
+                      <h:commandLink id="openG-#{item.id}" action="#{diagramaController.openGraphical(item.id)}" value="#{homeMsg.openGraphical}" immediate="true"/><span> </span>
+                      <h:commandLink id="delete-#{item.id}" action="#{diagramaController.deleteDiagram(item.id)}" value="#{homeMsg.delete}" immediate="true" onclick="return confirm('#{homeMsg.delete_confirmation_message}');"/>
+              </h:column>
+        </h:dataTable>
+          
+          
+            </h:form>
+              
+          </div>
+      </ui:define>
+      
+  </ui:composition>
+</html>

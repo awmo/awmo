@@ -1,0 +1,64 @@
+grammar br.org.awmo.textual.TextDiagram with org.eclipse.xtext.common.Terminals
+
+generate textDiagram "http://www.org.br/awmo/textual/TextDiagram"
+
+ClassDiagram:
+	{ClassDiagram}
+	
+    'Classes'
+	classes += ClassElement*
+	
+	'Relações'
+	relations += Relation*
+;
+
+ClassElement:
+	'classe' name = ID ('herda' parent = [ClassElement])? '{'
+		
+		attributes += Attribute*
+		
+		methods += Method*
+	
+	'}'
+;
+
+Attribute:
+	'atributo' visibility=Visibility name = ID ':' type=ComplexType
+;
+
+Method:
+	'metodo' visibility=Visibility name = ID ('(' (parameters+=Parameter*)? ')')? ':' type=ComplexType
+;
+
+Parameter:
+	name = ID ':' type=ComplexType (',' otherParamenter=Parameter)?
+;
+
+Relation: 
+	'relacao' relationType=RelationType source=[ClassElement] sourceCardinality=CARDINALITY target=[ClassElement] targetCardinality=CARDINALITY
+;
+
+ComplexType:
+	type=Type | aggregation=[ClassElement]
+;
+
+terminal CARDINALITY: '*' | 'n' | '1';
+
+enum RelationType:
+	ASSOCIATION = 'associacao' |
+	AGGREGATION = 'agregacao' |
+	COMPOSITION = 'composicao'
+;
+
+enum Visibility:
+	PUBLIC = 'public' |
+	PRIVATE = 'private' |
+	PROTECTED = 'protected'
+;
+
+enum Type:
+	STRING = 'string' |
+	INT = 'int' |
+	FLOAT = 'float' |
+	BOOLEAN = 'boolean'
+;

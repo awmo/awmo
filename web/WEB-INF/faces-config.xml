@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+    http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
+    version="2.0">
+  <application>
+    <resource-bundle>
+        <base-name>config.breadcrumb</base-name>
+        <var>breadCrumbMsg</var>
+    </resource-bundle>
+    <resource-bundle>
+        <base-name>config.head</base-name>
+        <var>headMsg</var>
+    </resource-bundle>
+    <resource-bundle>
+        <base-name>config.home</base-name>
+        <var>homeMsg</var>
+    </resource-bundle>
+    <resource-bundle>
+        <base-name>config.login</base-name>
+        <var>loginMsg</var>
+    </resource-bundle>
+    <resource-bundle>
+        <base-name>config.register</base-name>
+        <var>registerMsg</var>
+    </resource-bundle>
+    <resource-bundle>
+      <base-name>config.pagetitle</base-name>
+      <var>pageTitleMsg</var>
+    </resource-bundle>
+    <resource-bundle>
+      <base-name>config.about</base-name>
+      <var>aboutMsg</var>
+    </resource-bundle>
+    <resource-bundle>
+      <base-name>config.myaccount</base-name>
+      <var>myAccountMsg</var>
+    </resource-bundle>
+    <resource-bundle>
+      <base-name>config.userinfo</base-name>
+      <var>userInfoMsg</var>
+    </resource-bundle>
+    <resource-bundle>
+      <base-name>config.commonwords</base-name>
+      <var>commonWordsMsg</var>
+    </resource-bundle>
+    <resource-bundle>
+      <base-name>config.errormessage</base-name>
+      <var>errorMessageMsg</var>
+    </resource-bundle>
+    <resource-bundle>
+      <base-name>config.textualview</base-name>
+      <var>textualViewMsg</var>
+    </resource-bundle>
+    <resource-bundle>
+      <base-name>config.help</base-name>
+      <var>helpMsg</var>
+    </resource-bundle>
+
+    <locale-config>
+      <default-locale>pt-br</default-locale>
+      <supported-locale>en-us</supported-locale>
+    </locale-config>
+  </application>
+  
+  <!--<navigation-rule>
+    <from-from-view-id>*</from-from-view-id>
+    <navigation-case>
+      <from-outcome>login</from-outcome>
+      <to-view-id>login.xhtml</to-view-id>
+      <redirect />
+    </navigation-case>
+    <navigation-case>
+      <from-outcome>home</from-outcome>
+      <to-view-id>home.xhtml</to-view-id>
+      <redirect />
+    </navigation-case>
+  </navigation-rule>-->
+  
+  <!--<lifecycle>
+    <phase-listener>listeners.LoggedInCheck</phase-listener>
+  </lifecycle>
+  
+  <validator>
+    <validator-id>emailValidator</validator-id>
+    <validator-class>validators.EmailValidator</validator-class>
+  </validator>-->
+</faces-config>

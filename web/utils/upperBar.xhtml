@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html
+xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:h="http://java.sun.com/jsf/html" xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <ui:component>
+    <div id="upperBar">
+        <c:if test="#{diagramaController.currentName != ''}" >
+      <div id="selected_diagram">
+          <p>
+              <h:form>
+              <span><h:outputText value="#{headMsg.selected_diagram}" /></span>
+              <span> <h:outputText value="#{diagramaController.currentName}" /></span>
+              
+                <span> 
+                    <h:commandLink action="#{diagramaController.closeCurrent()}" value="#{headMsg.close_diagram}" immediate="true" />
+                </span>
+              </h:form>
+          </p>
+        
+      </div>
+            </c:if>
+      <div id="acessibilidade">
+        <div id="muda_tema">
+          <a href="javascript:changeStyle('/awmo/themes/black/style.css');"><img alt="#{headMsg.activeContrast}" title="#{headMsg.activeContrast}" src="/awmo/css/images/bt-contraste-on.png" /></a>
+          <a href="javascript:changeStyle('/awmo/themes/standard/style.css');"><img alt="#{headMsg.deactiveContrast}" title="#{headMsg.deactiveContrast}" src="/awmo/css/images/bt-contraste-off.png" /></a>
+        </div>
+        <div id="varia_fonte">
+          <button id="reduce_button" onkeypress="fontSize('pagina', -1, event);" onclick="fontSize('pagina', -1);" title="#{headMsg.reduceFont}"  >A-</button>
+          <button id="normalize_button" onkeypress="fontSize('pagina', 0, event);" onclick="fontSize('pagina', 0);" title="#{headMsg.normalFont}">A</button>
+          <button id="enlarge_button" onkeypress="fontSize('pagina', 1, event);" onclick="fontSize('pagina', 1);" title="#{headMsg.enlargeFont}">A+</button>
+        </div>
+        <div id="flags">
+          <h:form>
+            <h:commandLink title="Change language to english" action="#{localization.setLanguage('en', 'US')}">
+              <h:graphicImage alt="Change language to english" title="Change language to english" url="/css/images/usa.png" />
+            </h:commandLink>
+            &#160;
+            <h:commandLink title="Mudar linguagem para português" action="#{localization.setLanguage('pt', 'BR')}">
+              <h:graphicImage alt="Mudar linguagem para português" title="Mudar linguagem para português" url="/css/images/brazil.png" />
+            </h:commandLink>
+          </h:form>
+        </div>
+      </div>
+    </div>
+    <p class="clear" />
+  </ui:component>
+</html>

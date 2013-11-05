@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html 
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html">
+  <ui:composition template="utils/templateLogged.xhtml">
+      <ui:define name="contentLogged">
+          <div class="content-pad">
+              
+          <h1><h:outputText value="#{helpMsg.help_title}" /></h1>
+          <p><h:outputText value="#{helpMsg.help_message}" /></p>
+          
+          <a name="top"></a>
+          <ul>
+              <li><a href="#navigation"><h:outputText value="#{helpMsg.help_navigation_title}" /></a></li>
+              <li><a href="#assistive"><h:outputText value="#{helpMsg.help_assistive_title}" /></a></li>
+              <li><a href="#mainpage"><h:outputText value="#{helpMsg.help_main_page_title}" /></a></li>
+              <li><a href="#textual"><h:outputText value="#{helpMsg.help_textual_title}" /></a></li>
+              <li><a href="#graphical"><h:outputText value="#{helpMsg.help_graphical_title}" /></a></li>
+          </ul>
+          
+          <h2><a name="navigation"></a><h:outputText value="#{helpMsg.help_navigation_title}" /></h2>
+          <a href="#top"><h:outputText value="#{helpMsg.toTop}"/></a>
+          
+          <h2><a name="assistive"></a><h:outputText value="#{helpMsg.help_assistive_title}" /></h2>
+          <a href="#top"><h:outputText value="#{helpMsg.toTop}"/></a>
+
+          <h2><a name="mainpage"></a><h:outputText value="#{helpMsg.help_main_page_title}" /></h2>
+          <a href="#top"><h:outputText value="#{helpMsg.toTop}"/></a>
+          
+          <h2><a name="textual"></a><h:outputText value="#{helpMsg.help_textual_title}" /></h2>
+          <a href="#top"><h:outputText value="#{helpMsg.toTop}"/></a>
+          
+          <h2><a name="graphical"></a><h:outputText value="#{helpMsg.help_graphical_title}" /></h2>
+          <a href="#top"><h:outputText value="#{helpMsg.toTop}"/></a>
+          
+          </div>
+      </ui:define>
+      
+  </ui:composition>
+</html>

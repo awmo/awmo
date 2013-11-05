@@ -1,0 +1,104 @@
+#pagina {
+	color: #FFFFFF;
+        background: url("../../img/light_grey.png") #888 !important;
+}
+
+#topo {
+	
+}
+
+#pular_conteudo a {
+	color: #fff;
+}
+
+#account a {
+    color: #aaa;
+}
+
+#sistema a {
+	color: #fff;
+}
+
+#sistema {
+	text-shadow: 2px 2px 10px #000;
+}
+
+#logo_icmc {
+	background-image: url('images/logo-icmc.png');
+}
+
+#opcoes_conta a {
+	color: #FFFFFF;
+}
+
+#conteudo {
+	background-color: #ccc;
+	box-shadow: 1px 1px 20px #333;
+	-webkit-box-shadow: 1px 1px 20px #333;
+}
+
+#upperBar > div {
+	background-color: #ccc;
+}
+
+#selected_diagram form {
+        color: #000;
+}
+
+#txtPesquisaId {
+	color: #888;
+}
+
+#txtPesquisaId:focus {
+	color: #000;
+}
+
+.rounded_border {
+	background-color: #fff;
+}
+
+#navbar {
+	color: #555;
+	border-bottom-color: #aaa;
+}
+
+#muda_tema {
+	border-color: #444;
+}
+
+#agenda {
+	color: #444;
+}
+
+#login { background-color: #054B81; }
+#login form { color: #333; background-color: #fff; }
+
+#copyright a {
+    color: #ccc;
+}
+
+/* superfish */
+.sf-menu a,.sf-menu a:visited {
+	color: #000;
+}
+
+.sf-menu li {
+	background-color: #aaa;
+	border-color: #000;
+}
+
+.sf-menu li li {
+	border-bottom-color: #000;
+	border-color: #000;
+	box-shadow: 1px 1px 5px #333;
+}
+
+.sf-menu li:hover,.sf-menu li.sfHover,.sf-menu a:focus,.sf-menu a:hover,.sf-menu a:active, .sf-menu li.active a
+{
+	background: #ccc;
+        margin-left: 0 !important;
+}
+
+.CodeMirror-activeline-background {
+    background: #e8f2ff !important;
+}

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html 
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html">
+  <ui:composition template="utils/templateLogged.xhtml">
+      <ui:define name="contentLogged">
+          <script type="text/javascript">
+              var diagramJSON = '<h:outputText value="#{diagramaController.getDiagramAsJson()}" />';
+              var diagram = JSON.parse(diagramJSON);
+          </script>
+          <div style="width: auto; height: 600px; overflow: hidden;">
+            <div id="classDiagram"></div>	
+          </div>
+          
+          <script type="text/javascript">
+            <!--
+            
+            function printTipo(tipo) {
+                if (tipo.kind == 1) {
+                    return tipo.nativeTipo;
+                } else {
+                    return tipo.classe;
+                }
+            }
+            
+            function printVisibility(visibility) {
+                switch (visibility) {
+                    case 'private':
+                        return '-';
+                    case 'public':
+                        return '+';
+                    case 'protected':
+                        return '#';
+                }
+            }
+            
+            function findByClasseId(id) {
+                for(var i in diagram.classes) {
+                    var c = diagram.classes[i];
+                    if (c.id == id) {
+                        return c;
+                    }
+                }
+                return null;
+            }
+            
+            
+            $(document).ready(function() {
+                
+                    var classesById = new Array();
+
+                    var classDiagram = new UMLClassDiagram({id: 'classDiagram', name: diagram.name, width: 900, height: 600 });
+
+                    var incY = 70;
+                    var incX = 90;
+                    var xi = 0;
+                    var yi = 0;
+                    var limitX = 600;
+
+                    for(var c in diagram.classes) {
+                        var classObject = diagram.classes[c];
+                        
+                        //var tempClass = new UMLClass({x:classObject.positionX, y:classObject.positionY});
+                        var tempClass = new UMLClass({x:xi, y:yi});
+                        if (xi + incX > limitX) {
+                            yi += incY;
+                            xi = 0;
+                        } else {
+                            xi += incX;
+                        }
+                        
+                        tempClass.setName(classObject.name);
+                        
+                        for(var a in classObject.atributos) {
+                            var attr = classObject.atributos[a];
+                            tempClass.addAttribute(printVisibility(attr.visibility) + attr.name + ':' + printTipo(attr.tipo));
+                        }
+                        
+                        for(var m in classObject.operacaos) {
+                            var method = classObject.operacaos[m];
+                            
+                            var paramString = '';
+                            for(var p in method.parametros) {
+                                par = method.parametros[p];
+                                paramString += par.name + ':' + printTipo(par.tipo) + ',';
+                            }
+                            if (paramString.length > 0) {
+                                paramString = paramString.slice(0, -1);
+                            }
+                            
+                            tempClass.addOperation(printVisibility(method.visibility) + method.name + '(' + paramString + '):' + printTipo(method.tipo) );
+                        }
+                        
+                        classDiagram.addElement(tempClass);
+                        
+                        classesById[classObject.id] = tempClass;
+                    }
+                    
+                    for(var c in diagram.classes) {
+                        
+                        var classObject = diagram.classes[c];
+                        
+                        if (classObject.classe > 0) {
+                            var gen = new UMLGeneralization({ b: classesById[classObject.classe], a: classesById[classObject.id]});
+                            classDiagram.addElement(gen);
+                        }
+                        
+                        if (classObject.relacaoClassesForSourceClasseId.length > 0) {
+                            for( var r in classObject.relacaoClassesForSourceClasseId) {
+                                var relation  = classObject.relacaoClassesForSourceClasseId[r];
+                                
+                                switch (relation.relation) {
+                                    case "associacao":
+                                        var rel = new UMLAssociation({ b: classesById[relation.classeBySourceClasseId], a: classesById[relation.classeByTargetClasseId]});
+                                        rel.setComponentMultiplicityA(relation.targetCardinality);
+                                        rel.setComponentMultiplicityB(relation.sourceCardinality);
+                                        classDiagram.addElement(rel);
+                                        break;
+                                    case "agregacao":
+                                        var rel = new UMLAggregation({ b: classesById[relation.classeBySourceClasseId], a: classesById[relation.classeByTargetClasseId]});
+                                        rel.setComponentMultiplicityA(relation.targetCardinality);
+                                        rel.setComponentMultiplicityB(relation.sourceCardinality);
+                                        classDiagram.addElement(rel);
+                                        break;
+                                    case "composicao":
+                                        var rel = new UMLComposition({ b: classesById[relation.classeBySourceClasseId], a: classesById[relation.classeByTargetClasseId]});
+                                        rel.setComponentMultiplicityA(relation.targetCardinality);
+                                        rel.setComponentMultiplicityB(relation.sourceCardinality);
+                                        classDiagram.addElement(rel);
+                                        break;
+                                }
+                                
+                            }
+                        }
+                    }
+
+                    classDiagram.draw();
+                    classDiagram.interaction(true);
+
+            });
+
+            //-->
+            </script>
+          
+      </ui:define>
+      
+  </ui:composition>
+</html>

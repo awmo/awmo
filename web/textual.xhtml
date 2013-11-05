@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html 
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <ui:composition template="utils/templateLogged.xhtml">
+      <ui:define name="contentLogged">
+          <c:if test="#{diagramaController.textErrors != null and diagramaController.textErrors.size() > 0}" >
+            <div class="msgBox">
+                <ul class="msgBox">
+                    <li class="errors"><h:outputText value="#{homeMsg.message_parse_error}" /></li>
+                    <c:forEach items="#{diagramaController.textErrors}" var="error">
+                        <li class="errors">
+                            <h:outputText value="#{error}" escape="false" />
+                        </li>
+                    </c:forEach>
+                </ul>
+            </div>
+          </c:if>
+          <c:if test="#{diagramaController.textErrors != null and diagramaController.textErrors.size() == 0 and diagramaController.saveSuccess}" >
+            <div class="msgBox">
+                <ul class="msgBox">
+                    <li class="success"><h:outputText value="#{homeMsg.message_parse_success}" /></li>
+                </ul>
+            </div>
+              #{diagramaController.setSaveSuccess(false)}
+          </c:if>
+          <h:form id="textualDiagram">
+            <h:inputTextarea id="content" name="myTextArea" value="#{diagramaController.diagramAsText}" />
+            <h:commandButton id="submit" action="processa" value="#{textualViewMsg.save_button}" />
+          </h:form>
+          <script type="text/javascript">
+                // initialise plugins
+                /*$(document).ready(function(){ 
+                    var textArea = document.getElementById('textualDiagram:content');
+                    myCodeMirror = CodeMirror.fromTextArea(textArea, {
+                        lineNumbers: true,
+                        styleActiveLine: true,
+                        viewportMargin: Infinity 
+                    });
+                });*/
+            </script>
+      </ui:define>
+  </ui:composition>
+</html>

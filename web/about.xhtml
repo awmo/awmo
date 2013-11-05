@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html 
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html">
+  <ui:composition template="utils/templateLogged.xhtml">
+      <ui:define name="contentLogged">
+          <div class="content-pad">
+              
+          <h1><h:outputText value="#{aboutMsg.title}" /></h1>
+          <p><h:outputText value="#{aboutMsg.message}" /></p>
+          
+          <h2><h:outputText value="#{aboutMsg.collaboratorsText}" /></h2>
+          <p><h:outputText value="#{aboutMsg.collaboratorsMessage}" /></p>
+          
+          <p><h:outputText value="#{aboutMsg.financeMessage}" /></p>
+          
+          <p><h:outputText value="#{aboutMsg.mentorsMessage}" /></p>
+          
+          </div>
+      </ui:define>
+      
+  </ui:composition>
+</html>

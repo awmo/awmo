@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html 
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:h="http://java.sun.com/jsf/html">
+
+  <ui:composition>
+    <div id="account">
+
+      <h:outputText value="#{headMsg.welcome}" />,
+
+      <!-- Imprime nome --> 
+      <h:outputText value="#{loginControl.aluno.nome}" rendered="${loginControl.roles.isRole('ALUNO')}"/>
+      <h:outputText value="#{loginControl.professor.nome}" rendered="${loginControl.roles.isRole('PROFESSOR')}"/> |
+      
+      <a href="/awmo/minhaconta.jsf"><h:outputText value="#{pageTitleMsg.myaccount}" /></a> |
+
+      <!-- Mudanca de visão administrador -->
+      <h:form rendered="${loginControl.roles.isRole('ADMINISTRADOR')}">
+        <h:commandLink action="#{loginControl.professor.toogleView()}">
+          <h:outputText value="#{headMsg.viewTeacher}" rendered="${loginControl.professor.viewAdmin}"/>
+          <h:outputText value="#{headMsg.viewAdmin}" rendered="${!loginControl.professor.viewAdmin}"/>
+        </h:commandLink> |
+      </h:form>
+      
+      <!-- Botão logout -->
+      <h:form>
+        <h:commandLink action="#{loginControl.logout()}"><h:outputText value="#{headMsg.logout}" /></h:commandLink>
+      </h:form>
+
+    </div>
+  </ui:composition>
+  
+</html>

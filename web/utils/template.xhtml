@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:h="http://java.sun.com/jsf/html">
+  
+  <f:view locale="#{localization.locale}">
+  <head>
+    <!--TODO Usar internacionalizaćão para o título -->
+    <title>AWMo - <ui:insert name="title">Title</ui:insert></title>
+    
+    <ui:include src="head.xhtml" />
+  </head>
+  <body id="pagina">
+  
+    <!-- Page Head -->
+    <ui:include src="noscript.xhtml"/>
+    <ui:include src="jumpContent.xhtml" />
+    <!-- Info user account -->
+    <ui:insert name="account"></ui:insert>
+    <ui:include src="top.xhtml" />
+    <ui:include src="upperBar.xhtml" />
+    <!-- Menu -->
+    <ui:insert name="menu"></ui:insert>
+    
+    <!-- Content -->
+      <ui:insert name="content">
+        <!-- Aqui será colocado o conteúdo -->
+        
+      </ui:insert>
+    
+    <ui:include src="copyright.xhtml" />
+
+    <p class="clear" />
+    
+    <!-- Page Foot-->
+    <ui:include src="selos.xhtml" />
+  
+  </body>
+  </f:view>
+</html>

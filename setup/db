@@ -1,0 +1,2 @@
+#!/bin/bash
+mysql -u root -pq1w2e3 awmo
